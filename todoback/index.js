@@ -68,6 +68,6 @@ app.delete('/api/tasks/:id', auth, async (req, res) => {
   res.json({ message: 'Task deletada' });
 });
 
-app.listen(3000,"0.0.0.0", () => {
+app.listen(80,"0.0.0.0", () => {
   console.log('Servidor rodando na porta 3000');
 });
