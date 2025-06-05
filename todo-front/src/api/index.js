@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'http://3.137.164.63/api';
+const API = 'http://3.137.164.63/3000/api';
 
 export const register = (email, password) =>
   axios.post(`${API}/register`, { email, password });
