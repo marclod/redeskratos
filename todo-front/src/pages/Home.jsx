@@ -1,42 +1,51 @@
-import { useState } from 'react';
-import Login from '../components/Auth/Login';
-import Register from '../components/Auth/Register';
-import Todo from '../components/Todo/Todo';
+import { useState } from "react";
+import Login from "../components/Auth/Login";
+import Register from "../components/Auth/Register";
+import Todo from "../components/Todo/Todo";
 
 export default function Home() {
-  const [view, setView] = useState('login');
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [view, setView] = useState("login");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const handleLogin = (token) => {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
     setToken(token);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setToken(null);
-    setView('login');
+    setView("login");
   };
 
   if (token) return <Todo token={token} onLogout={handleLogout} />;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>To-Do com Auth</h1>
-      {view === 'login' ? (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 to-gray-700 text-white px-4">
+      {view === "login" ? (
         <>
           <Login onLogin={handleLogin} />
-          <p>
-            Não tem conta?{' '}
-            <button onClick={() => setView('register')}>Registrar</button>
+          <p className="mt-4 text-sm">
+            Não tem conta?{" "}
+            <button
+              onClick={() => setView("register")}
+              className="text-blue-400 hover:underline"
+            >
+              Registrar
+            </button>
           </p>
         </>
       ) : (
         <>
           <Register />
-          <p>
-            Já tem conta?{' '}
-            <button onClick={() => setView('login')}>Entrar</button>
+          <p className="mt-4 text-sm">
+            Já tem conta?{" "}
+            <button
+              onClick={() => setView("login")}
+              className="text-blue-400 hover:underline"
+            >
+              Entrar
+            </button>
           </p>
         </>
       )}
